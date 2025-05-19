@@ -1,0 +1,2 @@
+[ssh]
+identity_file = ~/.ssh/open5gs_id_rsa

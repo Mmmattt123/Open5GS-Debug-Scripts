@@ -1,0 +1,20 @@
+# IPs of Clients
+default:
+  ip: &default_ip 10.0.0.1
+  username: &default_user 5gs
+functions:
+  amf: 
+    ip: *default_ip
+    user: *default_user
+  upf: 
+    ip: 172.16.0.25
+    user: username
+  smf:
+    ip: *default_ip
+    user: *default_user
+  pcf:
+    ip: *default_ip
+    user: *default_user
+  udr:
+    ip: *default_ip
+    user: *default_user
