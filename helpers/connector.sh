@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Config files
-CONFIG_FILE=".hosts"          # target hosts config (INI-style)
+CONFIG_FILE=".config"          # target hosts config (INI-style)
 GLOBAL_CONFIG_FILE="/.config" # global config (INI-style)
 
 # Global jump host variable (set externally)
@@ -53,8 +53,8 @@ remote_exec() {
 
   # Get target host identity file
   local ID_FILE
-  ID_FILE=$(get_ssh_identity) || return 1
-
+  ID_FILE=$(get_ssh_identity)
+  echo "som za"
   # Get jump host identity file if jump host specified
   local JUMP_ID_FILE=""
   if [[ -n "$JUMP_HOST" ]]; then
@@ -74,8 +74,7 @@ remote_exec() {
   SSH_CMD+=("-i" "$ID_FILE" "${USER}@${HOST}")
 
   echo "Executing on ${USER}@${HOST} via ${JUMP_HOST:-direct}..."
-
-  "${SSH_CMD[@]}" "bash -s" <<EOF
-${SCRIPT}
-EOF
+  ${SSH_CMD[@]} 'bash -s' <<< "${SCRIPT}" EOF
+  return 0
+  
 }
