@@ -2,12 +2,21 @@
 
 HELPERS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/helpers" && pwd)"
 LOGS_SH="${HELPERS_DIR}/logs.sh"
+STATUS_SH="${HELPERS_DIR}/status.sh"
 
-if [[ "$1" == "-l" || "$1" == "--logs" ]]; then
-  shift
-  source "$LOGS_SH"
-  run_logs "$@"
-else
-  echo "Usage: $0 --logs [-s function1 function2 ...]"
-  exit 1
-fi
+case "$1" in
+  -l|--logs)
+    shift
+    source "$LOGS_SH"
+    run_logs "$@"
+    ;;
+  -S|--status)
+    shift
+    source "$STATUS_SH"
+    check_service_status "$@"
+    ;;
+  *)
+    echo "Usage: $0 [--logs|-l] [--status|-S] [-s func1 func2 ...] [-T jump_user@host]"
+    exit 1
+    ;;
+esac

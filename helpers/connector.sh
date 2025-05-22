@@ -54,7 +54,6 @@ remote_exec() {
   # Get target host identity file
   local ID_FILE
   ID_FILE=$(get_ssh_identity)
-  echo "som za"
   # Get jump host identity file if jump host specified
   local JUMP_ID_FILE=""
   if [[ -n "$JUMP_HOST" ]]; then
